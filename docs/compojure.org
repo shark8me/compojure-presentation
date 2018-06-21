@@ -1,0 +1,233 @@
+#+REVEAL_ROOT: file:///home/kiran/src/github/compojure-presentation/docs/reveal36
+# #+REVEAL_ROOT: http://cdn.jsdelivr.net/reveal.js/3.6.0/
+#+TITLE: Building REST APIs with compojure-api 
+#+AUTHOR: Kiran Karkera 
+#+EMAIL: Datacraft Sciences
+#+GITHUB: shark8me
+#+TWITTER: kaal_daari
+#+REVEAL_THEME: serif
+#+STARTUP: overview
+#+STARTUP: content
+#+STARTUP: showall
+#+STARTUP: showeverything
+#+OPTIONS: num:nil
+#+OPTIONS: slideNumber:true
+#+OPTIONS: reveal_title_slide:"<h1>%t</h1><h2>%a</h2><h3>%e</h3>"
+#+OPTIONS: toc:0
+#+REVEAL_EXTRA_CSS: ./my.css
+#+REVEAL_PLUGINS: (zoom notes )
+#+REVEAL_MAX_SCALE: 5 
+# * An introduction to Compojure-api
+
+** Experience report
+
+#+REVEAL: split
+Options for building REST APIs in Clojure
+#+ATTR_REVEAL: :frag appear
+Liberator
+#+ATTR_REVEAL: :frag appear
+Compojure
+
+** Problem statement: Implementing an API Specification
+
+API Groups
+
+#+ATTR_REVEAL: :frag appear
+User / Dataset / Service provider management
+
+** User management 
+
+- API group to manage users
+- Create user by 
+- HTTP POST to http://server/api/v1/users 
+
+*** JSON encoded input  
+
+#+ATTR_REVEAL: :frag appear
+Possibly defined in Avro 
+#+ATTR_REVEAL: :frag appear
+
+#+BEGIN_SRC json
+
+{
+    "name" : "actorInfo",
+    "fields" : [{"name" : "actorid", "type" : "string"},
+
+                {"name" : "name", "type" : "string"},
+
+                {"name" : "age", "type" : "int"},
+
+                {"name" : "phone", "type" : "string"}]
+}
+
+#+END_SRC
+ 
+*** JSON encoded output  
+
+#+BEGIN_SRC json
+
+{
+    "name" : "actorInfoResponse",
+    "fields" : [{"name" : "actorid", "type" : "string"},
+
+                {"name" : "privateKey", "type" : "string"},
+
+                {"name" : "state", "type" : "string"},
+
+                {"name" : "creationTime", "type" : "long"}]
+}
+
+#+END_SRC
+
+** Start hacking.. 
+
+** Issues
+
+- Manual schema validation
+- Type validation conversion
+- Content negotiation (e.g JSON vs EDN vs YAML vs ..)
+- Discoverability (e.g. Swagger)
+
+* Compojure-api
+
+#+ATTR_HTML: :style margin: 0 auto; display:block;
+[[./images/compojure-api.png]]
+
+
+** Definitions
+
+Specify a ring handler
+
+#+BEGIN_SRC clojure
+  (def app
+    (api
+     ;;configuration
+
+     (context "/some/path"
+              ;;API Groups or Resources
+
+              (GET "/someresource"
+                   ;;GET/POST/PUT methods
+                   ;;
+                   ))))
+#+END_SRC
+
+*** Configuration
+
+#+BEGIN_SRC clojure
+  {:coercion :schema
+   :swagger
+   {:ui "/"
+    :spec "/swagger.json"
+    :data {:info {:title "Aquarium API"
+                  :description "API methods for Aquarium"}
+           :tags [{:name "api",
+                   :description "Manage assets, actors "}]
+           :consumes ["application/json"]
+           :produces ["application/json"]
+           }}}
+#+END_SRC
+
+
+*** Specifying schemas 
+
+#+BEGIN_SRC clojure
+  (s/defschema RegisterActorReq
+    {:actorId s/Str
+     (s/optional-key :name) s/Str
+     (s/optional-key :privateKey) s/Str}
+    )
+#+END_SRC
+
+#+REVEAL: split
+
+#+BEGIN_SRC clojure
+  (s/defschema RegisterActorResp
+    {:actorId s/Str
+     (s/optional-key :state) s/Str
+     (s/optional-key :privateKey) s/Str
+     (s/optional-key :creationTime) s/Num
+     }
+    )
+#+END_SRC
+
+*** Responding to HTTP methods: GET
+
+#+BEGIN_SRC clojure
+  (GET "/:actorId" []
+       :return RegisterActorResp
+       :path-params [actorId :- s/Str]
+       :summary "Returns data on actor"
+       (ok (get-actor actorId)))
+#+END_SRC
+
+*** Responding to HTTP methods: POST
+
+#+BEGIN_SRC clojure
+  (POST "/" []
+        :return RegisterActorResp
+        :body [user RegisterActorReq]
+        :summary "Register an actor"
+        (let [res (register-actor user)]
+          (created nil res)))
+#+END_SRC
+
+*** Handling query parameters
+
+#+BEGIN_SRC clojure
+  (GET "/" [] :return AssetListResp
+       :query-params [from :- s/Str,
+                      to :- s/Str]
+       (ok (some-function from to)
+#+END_SRC
+
+
+*** Gotchas
+
+file download: tries to encode file as json
+disable response encoding
+#+REVEAL: split
+
+#+BEGIN_SRC clojure
+  (GET "/:assetId" []
+       :return File
+       :path-params [assetId :- s/Str]
+       :summary "Downloads asset from provider"
+       (let [{:keys [path content-type]} (get-asset-map assetId)]
+         (-> (io/file path)
+             (io/input-stream)
+             (ok)
+             (header "Content-type" content-type)
+             (muuntaja/disable-response-encoding)
+             )))
+#+END_SRC
+
+** Helpful libs
+
+#+BEGIN_SRC clojure
+    [ring.util.http-response :refer [ok header created not-found]]
+#+END_SRC
+
+#+REVEAL: split
+#+BEGIN_SRC clojure
+   [ring.middleware.multipart-params :refer [wrap-multipart-params]]
+   [ring.swagger.upload :as upload]
+#+END_SRC
+
+#+REVEAL: split
+#+BEGIN_SRC clojure
+   [muuntaja.core :as muuntaja]
+#+END_SRC
+
+* What I learned
+
+- Speed
+- Nice to demo & test
+
+** Open questions:
+
+- Argument tying: Should be REST API and business logic share arguments (such as map keys)
+- Messy mapping namespaced keywords 
+- Bubbling up the right error messages 
+  - 4 mandatory arguments: 2 are missing or wrong
+  - HTTP 400 Bad Request is insufficient.
