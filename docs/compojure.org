@@ -1,5 +1,5 @@
-#+REVEAL_ROOT: file:///home/kiran/src/github/compojure-presentation/docs/reveal36
-# #+REVEAL_ROOT: http://cdn.jsdelivr.net/reveal.js/3.6.0/
+# #+REVEAL_ROOT: file:///home/kiran/src/github/compojure-presentation/docs/reveal36
+#+REVEAL_ROOT: http://cdn.jsdelivr.net/reveal.js/3.6.0/
 #+TITLE: Building REST APIs with compojure-api 
 #+AUTHOR: Kiran Karkera 
 #+EMAIL: Datacraft Sciences
@@ -202,6 +202,20 @@ disable response encoding
              )))
 #+END_SRC
 
+** Testing
+
+Using Ring mock
+#+BEGIN_SRC clojure
+  (let [user {:actorId "actorid123"}
+        response (app (-> (mock/request :post "http://server/api/v1/actors/")
+                          (mock/content-type "application/json")
+                          (mock/body  (cheshire/generate-string user))))
+        body (cheshire/parse-string (slurp (:body response)) true)]
+    (is (= (:status response) 201))
+    (-> (s/check AssetResp body) nil? is)
+    )
+#+END_SRC
+
 ** Helpful libs
 
 #+BEGIN_SRC clojure
@@ -231,3 +245,9 @@ disable response encoding
 - Bubbling up the right error messages 
   - 4 mandatory arguments: 2 are missing or wrong
   - HTTP 400 Bad Request is insufficient.
+
+* Source 
+
+- [[https://shark8me.github.io/compojure-presentation/compojure.html][Presentation link]]
+- https://github.com/shark8me/compojure-presentation/
+- Tweet at @kaal_daari
