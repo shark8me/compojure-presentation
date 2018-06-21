@@ -7,9 +7,9 @@
 <style type="text/css">
 .underline { text-decoration: underline; }
 </style>
-<link rel="stylesheet" href="./reveal36/css/reveal.css"/>
+<link rel="stylesheet" href="http://cdn.jsdelivr.net/reveal.js/3.6.0/css/reveal.css"/>
 
-<link rel="stylesheet" href="./reveal36/css/theme/serif.css" id="theme"/>
+<link rel="stylesheet" href="http://cdn.jsdelivr.net/reveal.js/3.6.0/css/theme/serif.css" id="theme"/>
 
 <link rel="stylesheet" href="./my.css"/>
 
@@ -19,7 +19,7 @@
         var link = document.createElement( 'link' );
         link.rel = 'stylesheet';
         link.type = 'text/css';
-        link.href = './reveal36/css/print/pdf.css';
+        link.href = 'http://cdn.jsdelivr.net/reveal.js/3.6.0/css/print/pdf.css';
         document.getElementsByTagName( 'head' )[0].appendChild( link );
     }
 </script>
@@ -31,8 +31,8 @@
 </section>
 
 </section>
-<section id="slide-org2970612">
-<h3 id="org2970612">Experience report</h3>
+<section id="slide-org9470076">
+<h3 id="org9470076">Experience report</h3>
 </section>
 <section >
 <p>
@@ -46,8 +46,8 @@ Compojure
 </p>
 
 </section>
-<section id="slide-orgeb56525">
-<h3 id="orgeb56525">Problem statement: Implementing an API Specification</h3>
+<section id="slide-org4355b09">
+<h3 id="org4355b09">Problem statement: Implementing an API Specification</h3>
 <p>
 API Groups
 </p>
@@ -57,8 +57,8 @@ User / Dataset / Service provider management
 </p>
 
 </section>
-<section id="slide-org8712799">
-<h3 id="org8712799">User management</h3>
+<section id="slide-orgdd34e93">
+<h3 id="orgdd34e93">User management</h3>
 <ul>
 <li>API group to manage users</li>
 <li>Create user by</li>
@@ -67,8 +67,8 @@ User / Dataset / Service provider management
 </ul>
 
 </section>
-<section id="slide-org9bc6b98">
-<h4 id="org9bc6b98">JSON encoded input</h4>
+<section id="slide-orgd30f69d">
+<h4 id="orgd30f69d">JSON encoded input</h4>
 <p class="fragment appear">
 Possibly defined in Avro 
 </p>
@@ -90,8 +90,8 @@ Possibly defined in Avro
 </div>
 
 </section>
-<section id="slide-orgde12314">
-<h4 id="orgde12314">JSON encoded output</h4>
+<section id="slide-orgc91b2ff">
+<h4 id="orgc91b2ff">JSON encoded output</h4>
 <div class="org-src-container">
 
 <pre  class="src src-json">
@@ -110,12 +110,12 @@ Possibly defined in Avro
 </div>
 
 </section>
-<section id="slide-orgda4d02a">
-<h3 id="orgda4d02a">Start hacking..</h3>
+<section id="slide-org637804c">
+<h3 id="org637804c">Start hacking..</h3>
 
 </section>
-<section id="slide-orgd6b83ae">
-<h3 id="orgd6b83ae">Issues</h3>
+<section id="slide-org63370ec">
+<h3 id="org63370ec">Issues</h3>
 <ul>
 <li>Manual schema validation</li>
 <li>Type validation conversion</li>
@@ -127,8 +127,8 @@ Possibly defined in Avro
 </section>
 </section>
 <section>
-<section id="slide-org1771012">
-<h2 id="org1771012">Compojure-api</h2>
+<section id="slide-orgdc32df6">
+<h2 id="orgdc32df6">Compojure-api</h2>
 
 <div class="figure">
 <p><img src="./images/compojure-api.png" alt="compojure-api.png" style="margin: 0 auto; display:block;" />
@@ -137,8 +137,8 @@ Possibly defined in Avro
 
 
 </section>
-<section id="slide-orge6583a6">
-<h3 id="orge6583a6">Definitions</h3>
+<section id="slide-orgc9e7e9a">
+<h3 id="orgc9e7e9a">Definitions</h3>
 <p>
 Specify a ring handler
 </p>
@@ -160,8 +160,8 @@ Specify a ring handler
 </div>
 
 </section>
-<section id="slide-org0eb7085">
-<h4 id="org0eb7085">Configuration</h4>
+<section id="slide-org22c2610">
+<h4 id="org22c2610">Configuration</h4>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #4f97d7;">{</span><span style="color: #a45bad;">:coercion</span> <span style="color: #a45bad;">:schema</span>
@@ -180,8 +180,8 @@ Specify a ring handler
 
 
 </section>
-<section id="slide-org70a5945">
-<h4 id="org70a5945">Specifying schemas</h4>
+<section id="slide-orgf6417b5">
+<h4 id="orgf6417b5">Specifying schemas</h4>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #4f97d7;">(</span><span style="color: #ce537a; font-weight: bold;">s</span><span style="color: #b2b2b2; background-color: #292b2e;">/</span><span style="color: #4f97d7; font-weight: bold;">defschema</span> <span style="color: #bc6ec5; font-weight: bold;">RegisterActorReq</span>
@@ -208,8 +208,8 @@ Specify a ring handler
 </div>
 
 </section>
-<section id="slide-org23d36a9">
-<h4 id="org23d36a9">Responding to HTTP methods: GET</h4>
+<section id="slide-orgc2338b6">
+<h4 id="orgc2338b6">Responding to HTTP methods: GET</h4>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">GET</span> <span style="color: #2d9574;">"/:actorId"</span> <span style="color: #bc6ec5;">[]</span>
@@ -221,8 +221,8 @@ Specify a ring handler
 </div>
 
 </section>
-<section id="slide-org7730e83">
-<h4 id="org7730e83">Responding to HTTP methods: POST</h4>
+<section id="slide-org45c1f94">
+<h4 id="org45c1f94">Responding to HTTP methods: POST</h4>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">POST</span> <span style="color: #2d9574;">"/"</span> <span style="color: #bc6ec5;">[]</span>
@@ -235,8 +235,8 @@ Specify a ring handler
 </div>
 
 </section>
-<section id="slide-org419e0c3">
-<h4 id="org419e0c3">Handling query parameters</h4>
+<section id="slide-orgbae5582">
+<h4 id="orgbae5582">Handling query parameters</h4>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">GET</span> <span style="color: #2d9574;">"/"</span> <span style="color: #bc6ec5;">[]</span> <span style="color: #a45bad;">:return</span> <span style="color: #ce537a; font-weight: bold;">AssetListResp</span>
@@ -248,8 +248,8 @@ Specify a ring handler
 
 
 </section>
-<section id="slide-orga46164a">
-<h4 id="orga46164a">Gotchas</h4>
+<section id="slide-org4318769">
+<h4 id="org4318769">Gotchas</h4>
 <p>
 file download: tries to encode file as json
 disable response encoding
@@ -274,8 +274,8 @@ disable response encoding
 </div>
 
 </section>
-<section id="slide-orge675560">
-<h3 id="orge675560">Helpful libs</h3>
+<section id="slide-org6a29fbc">
+<h3 id="org6a29fbc">Helpful libs</h3>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #4f97d7;">[</span><span style="color: #ce537a; font-weight: bold;">ring.util.http-response</span> <span style="color: #a45bad;">:refer</span> <span style="color: #bc6ec5;">[</span>ok header created not-found<span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">]</span>
@@ -302,8 +302,8 @@ disable response encoding
 </section>
 </section>
 <section>
-<section id="slide-org110eefb">
-<h2 id="org110eefb">What I learned</h2>
+<section id="slide-org4267f66">
+<h2 id="org4267f66">What I learned</h2>
 <ul>
 <li>Speed</li>
 <li>Nice to demo &amp; test</li>
@@ -311,8 +311,8 @@ disable response encoding
 </ul>
 
 </section>
-<section id="slide-org2b11b92">
-<h3 id="org2b11b92">Open questions:</h3>
+<section id="slide-orga206dc5">
+<h3 id="orga206dc5">Open questions:</h3>
 <ul>
 <li>Argument tying: Should be REST API and business logic share arguments (such as map keys)</li>
 <li>Messy mapping namespaced keywords</li>
@@ -328,8 +328,8 @@ disable response encoding
 </section>
 </div>
 </div>
-<script src="./reveal36/lib/js/head.min.js"></script>
-<script src="./reveal36/js/reveal.js"></script>
+<script src="http://cdn.jsdelivr.net/reveal.js/3.6.0/lib/js/head.min.js"></script>
+<script src="http://cdn.jsdelivr.net/reveal.js/3.6.0/js/reveal.js"></script>
 
 <script>
 // Full list of configuration options available here:
@@ -357,8 +357,8 @@ multiplex: {
 
 // Optional libraries used to extend on reveal.js
 dependencies: [
- { src: './reveal36/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
- { src: './docs/reveal36/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+ { src: 'http://cdn.jsdelivr.net/reveal.js/3.6.0/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: 'http://cdn.jsdelivr.net/reveal.js/3.6.0/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
 });
 </script>
 </body>
