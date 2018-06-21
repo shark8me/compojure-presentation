@@ -1,5 +1,5 @@
 # #+REVEAL_ROOT: file:///home/kiran/src/github/compojure-presentation/docs/reveal36
-#+REVEAL_ROOT: http://cdn.jsdelivr.net/reveal.js/3.6.0/
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/reveal.js/3.6.0/
 #+TITLE: Building REST APIs with compojure-api 
 #+AUTHOR: Kiran Karkera 
 #+EMAIL: Datacraft Sciences

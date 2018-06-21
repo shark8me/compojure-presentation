@@ -7,9 +7,9 @@
 <style type="text/css">
 .underline { text-decoration: underline; }
 </style>
-<link rel="stylesheet" href="http://cdn.jsdelivr.net/reveal.js/3.6.0/css/reveal.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.6.0/css/reveal.css"/>
 
-<link rel="stylesheet" href="http://cdn.jsdelivr.net/reveal.js/3.6.0/css/theme/serif.css" id="theme"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.6.0/css/theme/serif.css" id="theme"/>
 
 <link rel="stylesheet" href="./my.css"/>
 
@@ -19,7 +19,7 @@
         var link = document.createElement( 'link' );
         link.rel = 'stylesheet';
         link.type = 'text/css';
-        link.href = 'http://cdn.jsdelivr.net/reveal.js/3.6.0/css/print/pdf.css';
+        link.href = 'https://cdn.jsdelivr.net/reveal.js/3.6.0/css/print/pdf.css';
         document.getElementsByTagName( 'head' )[0].appendChild( link );
     }
 </script>
@@ -31,8 +31,8 @@
 </section>
 
 </section>
-<section id="slide-org5de4815">
-<h3 id="org5de4815">Experience report</h3>
+<section id="slide-orgbe536e9">
+<h3 id="orgbe536e9">Experience report</h3>
 </section>
 <section >
 <p>
@@ -46,8 +46,8 @@ Compojure
 </p>
 
 </section>
-<section id="slide-org5c780e9">
-<h3 id="org5c780e9">Problem statement: Implementing an API Specification</h3>
+<section id="slide-org733a4a2">
+<h3 id="org733a4a2">Problem statement: Implementing an API Specification</h3>
 <p>
 API Groups
 </p>
@@ -57,8 +57,8 @@ User / Dataset / Service provider management
 </p>
 
 </section>
-<section id="slide-orgd274c81">
-<h3 id="orgd274c81">User management</h3>
+<section id="slide-orgbc85f01">
+<h3 id="orgbc85f01">User management</h3>
 <ul>
 <li>API group to manage users</li>
 <li>Create user by</li>
@@ -67,8 +67,8 @@ User / Dataset / Service provider management
 </ul>
 
 </section>
-<section id="slide-org81d711d">
-<h4 id="org81d711d">JSON encoded input</h4>
+<section id="slide-org3cec87a">
+<h4 id="org3cec87a">JSON encoded input</h4>
 <p class="fragment appear">
 Possibly defined in Avro 
 </p>
@@ -90,8 +90,8 @@ Possibly defined in Avro
 </div>
 
 </section>
-<section id="slide-org4bb1878">
-<h4 id="org4bb1878">JSON encoded output</h4>
+<section id="slide-org401415b">
+<h4 id="org401415b">JSON encoded output</h4>
 <div class="org-src-container">
 
 <pre  class="src src-json">
@@ -110,12 +110,12 @@ Possibly defined in Avro
 </div>
 
 </section>
-<section id="slide-org4d1e0dd">
-<h3 id="org4d1e0dd">Start hacking..</h3>
+<section id="slide-orga612b77">
+<h3 id="orga612b77">Start hacking..</h3>
 
 </section>
-<section id="slide-orgcd23e7a">
-<h3 id="orgcd23e7a">Issues</h3>
+<section id="slide-org6041953">
+<h3 id="org6041953">Issues</h3>
 <ul>
 <li>Manual schema validation</li>
 <li>Type validation conversion</li>
@@ -127,8 +127,8 @@ Possibly defined in Avro
 </section>
 </section>
 <section>
-<section id="slide-orgb6a7259">
-<h2 id="orgb6a7259">Compojure-api</h2>
+<section id="slide-orgd3831ef">
+<h2 id="orgd3831ef">Compojure-api</h2>
 
 <div class="figure">
 <p><img src="./images/compojure-api.png" alt="compojure-api.png" style="margin: 0 auto; display:block;" />
@@ -137,8 +137,8 @@ Possibly defined in Avro
 
 
 </section>
-<section id="slide-orgbf646d0">
-<h3 id="orgbf646d0">Definitions</h3>
+<section id="slide-org95537d6">
+<h3 id="org95537d6">Definitions</h3>
 <p>
 Specify a ring handler
 </p>
@@ -160,8 +160,8 @@ Specify a ring handler
 </div>
 
 </section>
-<section id="slide-org0c6bec7">
-<h4 id="org0c6bec7">Configuration</h4>
+<section id="slide-org95d657d">
+<h4 id="org95d657d">Configuration</h4>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #4f97d7;">{</span><span style="color: #a45bad;">:coercion</span> <span style="color: #a45bad;">:schema</span>
@@ -180,8 +180,8 @@ Specify a ring handler
 
 
 </section>
-<section id="slide-org8162f73">
-<h4 id="org8162f73">Specifying schemas</h4>
+<section id="slide-org89881ee">
+<h4 id="org89881ee">Specifying schemas</h4>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #4f97d7;">(</span><span style="color: #ce537a; font-weight: bold;">s</span><span style="color: #b2b2b2; background-color: #292b2e;">/</span><span style="color: #4f97d7; font-weight: bold;">defschema</span> <span style="color: #bc6ec5; font-weight: bold;">RegisterActorReq</span>
@@ -208,8 +208,8 @@ Specify a ring handler
 </div>
 
 </section>
-<section id="slide-orgfc4990f">
-<h4 id="orgfc4990f">Responding to HTTP methods: GET</h4>
+<section id="slide-org6835581">
+<h4 id="org6835581">Responding to HTTP methods: GET</h4>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">GET</span> <span style="color: #2d9574;">"/:actorId"</span> <span style="color: #bc6ec5;">[]</span>
@@ -221,8 +221,8 @@ Specify a ring handler
 </div>
 
 </section>
-<section id="slide-orgb056068">
-<h4 id="orgb056068">Responding to HTTP methods: POST</h4>
+<section id="slide-org347d4c6">
+<h4 id="org347d4c6">Responding to HTTP methods: POST</h4>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">POST</span> <span style="color: #2d9574;">"/"</span> <span style="color: #bc6ec5;">[]</span>
@@ -235,8 +235,8 @@ Specify a ring handler
 </div>
 
 </section>
-<section id="slide-orgc82e3bc">
-<h4 id="orgc82e3bc">Handling query parameters</h4>
+<section id="slide-orgf6e006c">
+<h4 id="orgf6e006c">Handling query parameters</h4>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">GET</span> <span style="color: #2d9574;">"/"</span> <span style="color: #bc6ec5;">[]</span> <span style="color: #a45bad;">:return</span> <span style="color: #ce537a; font-weight: bold;">AssetListResp</span>
@@ -248,8 +248,8 @@ Specify a ring handler
 
 
 </section>
-<section id="slide-org869b84a">
-<h4 id="org869b84a">Gotchas</h4>
+<section id="slide-org8d84f84">
+<h4 id="org8d84f84">Gotchas</h4>
 <p>
 file download: tries to encode file as json
 disable response encoding
@@ -274,8 +274,8 @@ disable response encoding
 </div>
 
 </section>
-<section id="slide-org3b0cefb">
-<h3 id="org3b0cefb">Testing</h3>
+<section id="slide-org2124734">
+<h3 id="org2124734">Testing</h3>
 <p>
 Using Ring mock
 </p>
@@ -293,8 +293,8 @@ Using Ring mock
 </div>
 
 </section>
-<section id="slide-orged125f8">
-<h3 id="orged125f8">Helpful libs</h3>
+<section id="slide-org0c656f5">
+<h3 id="org0c656f5">Helpful libs</h3>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #4f97d7;">[</span><span style="color: #ce537a; font-weight: bold;">ring.util.http-response</span> <span style="color: #a45bad;">:refer</span> <span style="color: #bc6ec5;">[</span>ok header created not-found<span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">]</span>
@@ -321,8 +321,8 @@ Using Ring mock
 </section>
 </section>
 <section>
-<section id="slide-org29c0f90">
-<h2 id="org29c0f90">What I learned</h2>
+<section id="slide-orgb79b216">
+<h2 id="orgb79b216">What I learned</h2>
 <ul>
 <li>Speed</li>
 <li>Nice to demo &amp; test</li>
@@ -330,8 +330,8 @@ Using Ring mock
 </ul>
 
 </section>
-<section id="slide-orgb8cdb2f">
-<h3 id="orgb8cdb2f">Open questions:</h3>
+<section id="slide-org981d2c2">
+<h3 id="org981d2c2">Open questions:</h3>
 <ul>
 <li>Argument tying: Should be REST API and business logic share arguments (such as map keys)</li>
 <li>Messy mapping namespaced keywords</li>
@@ -347,8 +347,8 @@ Using Ring mock
 </section>
 </section>
 <section>
-<section id="slide-org4e0f867">
-<h2 id="org4e0f867">Source</h2>
+<section id="slide-orgbfc2843">
+<h2 id="orgbfc2843">Source</h2>
 <ul>
 <li><a href="https://shark8me.github.io/compojure-presentation/compojure.html">Presentation link</a></li>
 <li><a href="https://github.com/shark8me/compojure-presentation/">https://github.com/shark8me/compojure-presentation/</a></li>
@@ -359,8 +359,8 @@ Using Ring mock
 </section>
 </div>
 </div>
-<script src="http://cdn.jsdelivr.net/reveal.js/3.6.0/lib/js/head.min.js"></script>
-<script src="http://cdn.jsdelivr.net/reveal.js/3.6.0/js/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/reveal.js/3.6.0/lib/js/head.min.js"></script>
+<script src="https://cdn.jsdelivr.net/reveal.js/3.6.0/js/reveal.js"></script>
 
 <script>
 // Full list of configuration options available here:
@@ -388,8 +388,8 @@ multiplex: {
 
 // Optional libraries used to extend on reveal.js
 dependencies: [
- { src: 'http://cdn.jsdelivr.net/reveal.js/3.6.0/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
- { src: 'http://cdn.jsdelivr.net/reveal.js/3.6.0/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+ { src: 'https://cdn.jsdelivr.net/reveal.js/3.6.0/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: 'https://cdn.jsdelivr.net/reveal.js/3.6.0/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
 });
 </script>
 </body>
