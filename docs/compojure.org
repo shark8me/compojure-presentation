@@ -1,5 +1,5 @@
 # #+REVEAL_ROOT: file:///home/kiran/src/github/compojure-presentation/docs/reveal36
-#+REVEAL_ROOT: https://cdn.jsdelivr.net/reveal.js/3.6.0/
+#+REVEAL_ROOT: https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/ 
 #+TITLE: Building REST APIs with compojure-api 
 #+AUTHOR: Kiran Karkera 
 #+EMAIL: Datacraft Sciences
@@ -250,4 +250,5 @@ Using Ring mock
 
 - [[https://shark8me.github.io/compojure-presentation/compojure.html][Presentation link]]
 - https://github.com/shark8me/compojure-presentation/
-- Tweet at @kaal_daari
+
+Tweet at @kaal_daari
